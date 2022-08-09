@@ -1,0 +1,25 @@
+function myFunction123() {
+  var foldername = 'PDF_Folder';
+  var folderlisting = 'listing of folder ' + foldername;
+  
+  var folders = DriveApp.getFoldersByName(foldername)
+  var folder = folders.next();
+  var contents = folder.getFiles();
+  var contents = folder.getFiles();
+  
+  var ss = SpreadsheetApp.create(folderlisting);
+  var sheet = ss.getActiveSheet();
+  sheet.appendRow(['name','link']);
+  
+  var file;
+  var name;
+  var link;
+  var row; 
+  while(contents.hasNext()){
+    file = contents.next();
+    name = file.getName();
+    link = file.getUrl();
+    sheet.appendRow([name, link]);
+  }
+  
+};
